@@ -3,10 +3,13 @@ package com.example.demo.student;
 import java.time.LocalDate;
 import java.time.Period;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import jakarta.persistence.Transient;
@@ -19,7 +22,7 @@ public class Student {
 
     @SequenceGenerator(
         name = "student_sequence",
-        sequenceName = "studentsequence",
+        sequenceName = "student_sequence",
         allocationSize = 1
     )
 
@@ -34,6 +37,11 @@ public class Student {
     private LocalDate Dob;
     @Transient
     private int age;
+    
+    @OneToOne(cascade =  CascadeType.ALL)
+    @JoinColumn(name = "address_id", referencedColumnName = "id")
+    private Address address;
+
 
 
     public Student(){
@@ -93,6 +101,14 @@ public class Student {
     // public void setAge(int age) {
     //     this.age = age;
     // }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 
     @Override
     public String toString() {

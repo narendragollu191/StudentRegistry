@@ -2,7 +2,7 @@ package com.example.demo.student;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,9 +49,11 @@ public class StudentController {
     }
 
     @PutMapping(path = "{userId}")
-    public void updateStudent(@PathVariable("userId") Long userId, @RequestParam(required = false) String name, @RequestParam(required = false) String email) throws IOException
+    public ResponseEntity<String> updateStudent(@PathVariable("userId") Long userId, @RequestParam(required = false) String name, @RequestParam(required = false) String email
+                   ,@RequestParam(required = false) String statetname, @RequestParam(required = false) String streetname, @RequestParam(required = false) String zipcode)  throws IOException
     {
-        studentService.updateStudentDetails(userId, name, email);
+        studentService.updateStudentDetails(userId, name, email, statetname, streetname,zipcode);
+        return ResponseEntity.ok("Student details updated successfully");
     }
 
 }

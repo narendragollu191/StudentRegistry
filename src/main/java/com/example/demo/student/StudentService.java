@@ -49,7 +49,7 @@ public class StudentService {
   }
 
   @Transactional
-  public void updateStudentDetails(Long userId, String name, String email) throws IOException {
+  public void updateStudentDetails(Long userId, String name, String email, String statename, String streetname, String zipcode) throws IOException {
     Student student = studentRepository.findById(userId)
     .orElseThrow(() -> new IIOException("student with Id " + userId + " does not exist"));
 
@@ -63,8 +63,21 @@ public class StudentService {
       if (studentOptional.isPresent()) {
         throw new IIOException("email present");
       }
+
       student.setEmail(email);
     }
+      Address address = student.getAddress();
+
+      if(statename != null && statename.length()>0){
+        address.setStatename(statename);
+      }
+
+      if(streetname != null && streetname.length()>0){
+        address.setStreetname(streetname);
+      }
+
+      if(zipcode != null){ address.setZipcode(zipcode);}
+    
   }
 
 }
