@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 import java.io.IOException;
 import java.util.List;
@@ -27,6 +27,10 @@ public class StudentService {
 
   public List<Student> getStudents() {
     return studentRepository.findAll();
+  }
+
+  public Optional<Student> getStudentInfo(Long id){
+    return studentRepository.findById(id);
   }
 
   public Student addNewStudent(Student student) throws IOException {
@@ -79,5 +83,11 @@ public class StudentService {
       if(zipcode != null){ address.setZipcode(zipcode);}
     
   }
+
+      public List<Student> getStudentsByDept(String depname){
+      List<Student> studentInfo = studentRepository.findByDepartment_Depname(depname);
+      return studentInfo;
+
+    }
 
 }

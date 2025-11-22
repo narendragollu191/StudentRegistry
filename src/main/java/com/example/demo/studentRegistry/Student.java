@@ -1,7 +1,9 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 import java.time.LocalDate;
 import java.time.Period;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -9,6 +11,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
@@ -41,6 +44,11 @@ public class Student {
     @OneToOne(cascade =  CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "dept_id", referencedColumnName = "id")
+    @JsonManagedReference
+    private Department department;
 
 
 

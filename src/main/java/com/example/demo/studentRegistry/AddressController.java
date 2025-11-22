@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 import java.io.IOException;
 import java.util.List;

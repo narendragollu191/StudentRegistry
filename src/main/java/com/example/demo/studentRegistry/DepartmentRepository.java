@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 
 
@@ -6,8 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Integer> {
+public interface DepartmentRepository extends JpaRepository<Department, Integer> {
 
-
+    
 
 }

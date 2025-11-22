@@ -1,8 +1,8 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 import java.io.IOException;
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,6 +34,16 @@ public class StudentController {
 		return studentService.getStudents();
 	}
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Student> getStudentDetails(@PathVariable("id") Long id){
+        Optional<Student> studentOpt = studentService.getStudentInfo(id);
+        if (studentOpt.isPresent()) {
+            return ResponseEntity.ok(studentOpt.get());
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
     @PostMapping("/newuser")
     public ResponseEntity<Student> registerNewStudent(@RequestBody Student student) throws IOException
     {
@@ -55,5 +65,11 @@ public class StudentController {
         studentService.updateStudentDetails(userId, name, email, statetname, streetname,zipcode);
         return ResponseEntity.ok("Student details updated successfully");
     }
+
+      @GetMapping("/{depname}/students")
+    public List<Student> getStudentsByDepartment(@PathVariable String depname){
+        return studentService.getStudentsByDept(depname);
+    }
+
 
 }

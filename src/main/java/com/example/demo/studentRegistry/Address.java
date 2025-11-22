@@ -1,4 +1,4 @@
-package com.example.demo.student;
+package com.example.demo.studentRegistry;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -75,8 +75,7 @@ public class Address {
 
     @Override
     public String toString() {
-        return "Address [id=" + id + ", statename=" + statename + ", streetname=" + streetname + ", Zipcode=" + Zipcode
-                + "]";
+        return "Address [id=" + id + ", statename=" + statename + ", streetname=" + streetname + ", Zipcode=" + Zipcode+ "]";
     }
 
 }
